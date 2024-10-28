@@ -1,83 +1,15 @@
 #include "Arduino_LED_Matrix.h"
+#include "DigitPosition.h"
+#include "DigitBitmaps.h"
 
 ArduinoLEDMatrix matrix;
-
-enum DigitPosition {
-  LEFT,
-  CENTER,
-  RIGHT
-};
-
-byte numbers[10][5][3] = {
-  {
-    {1,1,1},
-    {1,0,1},
-    {1,0,1},
-    {1,0,1},
-    {1,1,1}
-  }, {
-    {0,0,1},
-    {0,0,1},
-    {0,0,1},
-    {0,0,1},
-    {0,0,1}
-  }, {
-    {1,1,1},
-    {0,0,1},
-    {1,1,1},
-    {1,0,0},
-    {1,1,1}
-  }, {
-    {1,1,1},
-    {0,0,1},
-    {1,1,1},
-    {0,0,1},
-    {1,1,1}
-  }, {
-    {1,0,1},
-    {1,0,1},
-    {1,1,1},
-    {0,0,1},
-    {0,0,1}
-  }, {
-    {1,1,1},
-    {1,0,0},
-    {1,1,1},
-    {0,0,1},
-    {1,1,1}
-  }, {
-    {1,1,1},
-    {1,0,0},
-    {1,1,1},
-    {1,0,1},
-    {1,1,1}
-  }, {
-    {1,1,1},
-    {0,0,1},
-    {0,0,1},
-    {0,0,1},
-    {0,0,1}
-  }, {
-    {1,1,1},
-    {1,0,1},
-    {1,1,1},
-    {1,0,1},
-    {1,1,1}
-  }, {
-    {1,1,1},
-    {1,0,1},
-    {1,1,1},
-    {0,0,1},
-    {1,1,1}
-  }
-};
 
 void insertNumber(byte arr[][12], int digit, DigitPosition position) {
   int yOffset = 3;
   int xOffset = 4 * position;
   for (int row = 0; row < 5; row++) {
     for (int col = 0; col < 3; col++) {
-      arr[row + yOffset][col + xOffset] = numbers[digit][row][col];
+      arr[row + yOffset][col + xOffset] = DigitBitmaps[digit][row][col];
     }
   }
 }
