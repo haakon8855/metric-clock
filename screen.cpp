@@ -14,10 +14,10 @@ void setComma(byte arr[][12]) {
   arr[7][3] = 1;
 }
 
-void drawTime(byte arr[][12], float time) {
-  int firstDigit = (int)time;
-  int secondDigit = (int)((time - (int)time)*10);
-  int thirdDigit = (int)((time*10 - (int)(time*10))*10);
+void drawTime(byte arr[][12], int time) {
+  int firstDigit = time / 100;
+  int secondDigit = (time - firstDigit * 100) / 10;
+  int thirdDigit = time - firstDigit * 100 - secondDigit * 10;
   insertNumber(arr, firstDigit, LEFT);
   insertNumber(arr, secondDigit, CENTER);
   insertNumber(arr, thirdDigit, RIGHT);

@@ -7,7 +7,7 @@
 
 void insertNumber(byte arr[][12], int digit, DigitPosition position);
 void setComma(byte arr[][12]);
-void drawTime(byte arr[][12], float time);
+void drawTime(byte arr[][12], int time);
 void clearFrame(byte arr[][12]);
 
 #endif
