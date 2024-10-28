@@ -1,5 +1,5 @@
-#ifndef DigitBitmaps_H
-#define DigitBitmaps_H
+#ifndef DIGIT_BITMAPS
+#define DIGIT_BITMAPS
 
 const byte DigitBitmaps[10][5][3] = {
   {

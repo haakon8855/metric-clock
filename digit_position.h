@@ -1,5 +1,5 @@
-#ifndef DigitPosition_H
-#define DigitPosition_H
+#ifndef DIGIT_POSITION
+#define DIGIT_POSITION
 
 enum DigitPosition {
   LEFT,
