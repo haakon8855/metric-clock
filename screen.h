@@ -2,12 +2,13 @@
 #define SCREEN
 
 #include "Arduino.h"
+#include "config.h"
 #include "digit_bitmaps.h"
 #include "digit_position.h"
 
-void insertNumber(byte arr[][12], int digit, DigitPosition position);
-void setComma(byte arr[][12]);
-void drawTime(byte arr[][12], int time);
-void clearFrame(byte arr[][12]);
+void insertNumber(byte arr[][SCREEN_WIDTH], int digit, DigitPosition position);
+void setComma(byte arr[][SCREEN_WIDTH]);
+void drawTime(byte arr[][SCREEN_WIDTH], int time);
+void clearFrame(byte arr[][SCREEN_WIDTH]);
 
 #endif

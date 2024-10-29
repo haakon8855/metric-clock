@@ -1,39 +1,27 @@
 #include "Arduino_LED_Matrix.h"
 #include "RTC.h"
+
+#include "config.h"
 #include "digit_bitmaps.h"
 #include "screen.h"
+#include "metric_time.h"
 
 ArduinoLEDMatrix matrix;
 
-volatile bool irqFlag = false;
-
-byte frame[8][12] = { 0 };
-int currentTime = 0;
+byte frame[SCREEN_HEIGHT][SCREEN_WIDTH] = { 0 };
 
 void setup() {
-  Serial.begin(9600);
+  MetricTime.begin();
+  MetricTime.setTime(20, 47, 10);
   matrix.begin();
-
-  RTC.begin();
-  RTCTime mytime(1, Month::OCTOBER, 1998, 13, 37, 0, DayOfWeek::THURSDAY, SaveLight::SAVING_TIME_ACTIVE);
-  RTC.setTime(mytime);
-
-  if (!RTC.setPeriodicCallback(periodicCallback, Period::N16_TIMES_EVERY_SEC)) {
-    Serial.println("ERROR: periodic callback not set");
-  }
 }
 
 void loop() {
+  int metric = MetricTime.getTime();
+
   clearFrame(frame);
   // setComma(frame);
-  drawTime(frame, currentTime);
-  matrix.renderBitmap(frame, 8, 12);
-  delay(50);
-}
-
-void periodicCallback() {
-  currentTime += 1;
-  if (currentTime >= 1000) {
-    currentTime = 0;
-  }
+  drawTime(frame, metric);
+  matrix.renderBitmap(frame, SCREEN_HEIGHT, SCREEN_WIDTH);
+  delay(100);
 }
