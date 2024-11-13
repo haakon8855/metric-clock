@@ -1,3 +1,4 @@
+#include "RTC.h"
 #include "metric_time.h"
 
 
@@ -5,9 +6,19 @@ void MetricTimeClass::begin() {
   RTC.begin();
 }
 
-void MetricTimeClass::setTime(int hours, int minutes, int seconds) {
-  RTCTime mytime(1, Month::JANUARY, 1970, hours, minutes, seconds, DayOfWeek::THURSDAY, SaveLight::SAVING_TIME_INACTIVE);
+void MetricTimeClass::setTime(int offset) {
+  RTCTime mytime(baseTime + offset);
   RTC.setTime(mytime);
+}
+
+void MetricTimeClass::incrementTime() {
+  timeOffset += 86;//.4
+  setTime(timeOffset);
+}
+
+void MetricTimeClass::decrementTime() {
+  timeOffset -= 86;//.4
+  setTime(timeOffset);
 }
 
 int MetricTimeClass::getTime() {
